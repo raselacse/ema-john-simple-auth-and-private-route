@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const Cart = (props) => {
     const cart = props.cart;
     // const total = cart.reduce((total, prd) => total + prd.price, 0)
     let total = 0;
     cart.forEach(product => {
-        total = total + product.price;
+        console.log(product.quantity)
+        total = total + product.price * product.quantity;
     });
 
     let shipping = 0;
@@ -30,7 +30,9 @@ const Cart = (props) => {
             <p><small>Shipping Cost: {shipping}</small></p>
             <p><small>Tax: {tax}</small></p>
             <p>Total Price: {total+shipping+tax}</p>
-            <Link to="/review"><button className='add-to-cart'>Review your Order</button></Link>
+            {
+                props.children
+            }
         </div>
     );
 };
